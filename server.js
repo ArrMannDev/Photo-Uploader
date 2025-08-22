@@ -14,6 +14,9 @@ app.use(express.static(path.join(__dirname, 'src')));
 app.set('view engine', 'ejs');
 app.set("views",path.join(__dirname,"views"));
 
+const loginRoute = require('./routes/authRoute');
+app.use('/auth',loginRoute)
+
 app.get("/", (req, res) => {
     res.render('index');
 });
