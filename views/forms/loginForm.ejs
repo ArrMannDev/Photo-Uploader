@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../output.css" rel="stylesheet">
+    <title>Sign In</title>
+</head>
+<body class="inset-0 w-fit mx-auto">
+    <form action="/auth/login" method="post" class="w-[400px] h-[350px] flex flex-col items-center gap-7 border-1 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl">
+        <h1 class="text-4xl text-[#da0e93] mb-3">Log In</h1>
+        <div class="flex gap-2 items-center justify-center">
+            <label for="email" class="w-[80px] block">Email :</label>
+            <input type="text" name="email" placeholder="Email" class="border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+        </div>
+
+        <div class="flex gap-2 items-center justify-center">
+            <label for="password" class="w-[80px] block">Password: </label>
+            <input type="password" name="password" placeholder="Password" class="border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+        </div>
+
+        <div class="flex justify-end w-[300px]">
+            <button type="submit" class="border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl text-sm w-full">Log In</button>
+        </div>
+    </form>
+</body>
+</html>
