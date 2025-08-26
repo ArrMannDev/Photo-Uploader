@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../output.css" rel="stylesheet">
+    <link href="/src/output.css" rel="stylesheet">
     <title>Sign In</title>
 </head>
-<body class="inset-0 w-fit mx-auto">
-    <form action="/auth/login" method="post" class="w-[400px] h-[350px] flex flex-col items-center gap-7 border-1 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl">
-        <h1 class="text-4xl text-[#da0e93] mb-3">Log In</h1>
-        <div class="flex gap-2 items-center justify-center">
-            <label for="email" class="w-[80px] block">Email :</label>
-            <input type="text" name="email" placeholder="Email" class="border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+<body class="inset-0 w-fit mx-auto transform translate-y-1/2">
+    <h1><%= message %></h1>
+
+    <form action="/auth/login" method="post" class="w-[400px] h-[400px] flex flex-col items-center gap-4 border-1 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl">
+        <h1 class="text-4xl text-[#da0e93] my-3">Log In</h1>
+
+        <div class="flex flex-col gap-2 items-start justify-center">
+            <label for="email" class="block text-sm">Email </label>
+            <input type="text" id="email" name="email" placeholder="Email" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
         </div>
 
-        <div class="flex gap-2 items-center justify-center">
-            <label for="password" class="w-[80px] block">Password: </label>
-            <input type="password" name="password" placeholder="Password" class="border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+        <div class="flex flex-col gap-2 items-start justify-center">
+            <label for="password" class="block text-sm">Password: </label>
+            <input type="password" id="password" name="password" placeholder="Password" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
         </div>
 
-        <div class="flex justify-end w-[300px]">
+        <div class="flex  w-[300px] mt-5 rounded-2xl hover:bg-[#F898D8] hover:cursor-pointer">
             <button type="submit" class="border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl text-sm w-full">Log In</button>
         </div>
+        <a href="/auth/signUp" class="text-sm">Not Have Account? Register</a>
     </form>
+   
 </body>
 </html>
