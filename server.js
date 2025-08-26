@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
   
     if (token) {
       try {
-        const user = jwt.verifyToken(token); 
+        const user = await jwt.verifyToken(token); 
         req.user = user; 
         return res.redirect('/dashboard'); 
       } catch (err) {
