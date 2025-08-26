@@ -1,12 +1,6 @@
 const User = require("../models/userModel");
 const jwt = require("../utils/jwt");
 
-exports.login = async (req, res) => {
-  res.render("./forms/loginForm", {
-    title: "Sign In",
-    message: "",
-  });
-};
 
 exports.loginUser = async (req, res) => {
   try {
