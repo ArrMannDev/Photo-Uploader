@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
         req.user = user; 
         return res.redirect('/dashboard'); 
       } catch (err) {
-        return res.render('forms/loginForm', { message: null });
+        return res.render('forms/loginForm', { message: err });
       }
     }
   
