@@ -2,7 +2,7 @@ const db = require("../config/database");
 const bcrypt = require("bcrypt");
 
 class User {
-  static async createUser(username, email, password) {
+  static async createUser(username, email, password,profile) {
     try {
       const existingUser = await this.findUserByEmail(email);
       if (existingUser.length > 0) {
@@ -11,8 +11,8 @@ class User {
   
       const hashedPassword = await bcrypt.hash(password, 10);
       const [result] = await db.query(
-        "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-        [username, email, hashedPassword]
+        "INSERT INTO users (name, email, password,image) VALUES (?, ?, ?,?)",
+        [username, email, hashedPassword,profile]
       );
   
       if (result.affectedRows === 1) {
