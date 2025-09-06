@@ -50,8 +50,6 @@ exports.signUp = async (req, res) => {
   });
 };
 
-
-//profile htae yan kyn
 exports.signUpUser = async (req, res) => {
   try {
     upload(req, res, async (err) => {

@@ -1,0 +1,13 @@
+<div class="w-full flex flex-col justify-center gap-10 p-7">
+  <h1 class="text-3xl text-[#da0e93] text-center">Files and Pics</h1>
+
+  <div class="w-full flex flex-row flex-wrap justify-start items-center gap-15 py-5 px-10">
+    <% folders.forEach((folder) => { %>
+    <div class="flex flex-col justify-center items-center">
+      <img src="../img/Folder-border.svg" alt="folder-img" />
+      <span class="text-sm"><%= folder.foldername %></span>
+    </div>
+
+    <% }) %>
+  </div>
+</div>

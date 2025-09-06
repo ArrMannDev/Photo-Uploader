@@ -6,6 +6,7 @@ const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
+const Folder = require('./models/folderModel');
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -20,10 +21,12 @@ app.set("views",path.join(__dirname,"views"));
 
 
 const loginRoute = require('./routes/authRoute');
+const folderRoute = require('./routes/folderRoute');
 const auth = require('./middleware/auth');
 const jwt = require('./utils/jwt');
 
 app.use('/auth',loginRoute)
+app.use('/folder',folderRoute)
 
 app.get('/', async (req, res) => {
     const token = req.cookies.authToken;
@@ -36,8 +39,9 @@ app.get('/', async (req, res) => {
   });
   
 
-app.get('/dashboard', auth, (req, res) => {
-    res.render('index', { user: req.user });
+app.get('/dashboard', auth, async(req, res) => {
+    const folders = await Folder.getAllFolders(req.user.id);
+    res.render('index', { user: req.user, folders });
   });
 
   app.get('/authremove', (req, res) => {
