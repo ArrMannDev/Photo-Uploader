@@ -22,11 +22,14 @@ app.set("views",path.join(__dirname,"views"));
 
 const loginRoute = require('./routes/authRoute');
 const folderRoute = require('./routes/folderRoute');
+const imageRoute = require('./routes/imageRoute');
+
 const auth = require('./middleware/auth');
 const jwt = require('./utils/jwt');
 
 app.use('/auth',loginRoute)
 app.use('/folder',folderRoute)
+app.use('/image',imageRoute)
 
 app.get('/', async (req, res) => {
     const token = req.cookies.authToken;

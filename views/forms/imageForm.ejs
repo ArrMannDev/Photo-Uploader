@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/src/output.css" rel="stylesheet">
+    <title><%= title %></title>
+</head>
+<body class="inset-0 w-fit mx-auto transform translate-y-1/2">
+    <h1><%= message %></h1>
+
+    <form action="/image/createImage" method="post" class="w-[400px] h-[400px] flex flex-col items-center gap-4 border-1 border-[#F898D8] rounded-2xl px-3 shadow-xl" enctype="multipart/form-data">
+        <h1 class="text-4xl text-[#da0e93] my-3"><%= title %></h1>
+
+        <div class="flex flex-col gap-2 items-start justify-center">
+            <label for="folderID" class="block text-sm">Folder ID</label>
+            <input type="text" id="folderID" name="folderID" placeholder="folderID" value="<%= folder ? folder.id : 1 %>" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+        </div>
+
+        <div class="flex flex-col gap-2 items-start justify-center">
+            <label for="image" class="block text-sm">Upload Image</label>
+            <input type="file" id="image" name="image" placeholder="Upload Image" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+        </div>
+
+        <div class="flex  w-[300px] mt-5 rounded-2xl hover:bg-[#F898D8] hover:cursor-pointer">
+            <button type="submit" class="border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl text-sm w-full">Upload Image</button>
+        </div>
+    </form>
+   
+</body>
+</html>
