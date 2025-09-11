@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const Folder = require('../models/folderModel');
+const Image = require('../models/imageModel');
 
 
 exports.create = async (req, res) => {
@@ -18,4 +19,12 @@ exports.createFolder = async (req,res)=>{
     }
 
     res.redirect('/dashboard');
+}
+
+exports.detail = async (req,res)=>{
+    const folderID = req.params.id;
+    console.log(folderID);
+    const images = await Image.findImages(folderID);
+    console.log(images);
+    res.render("detail",{user:req.user,folderID});
 }

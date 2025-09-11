@@ -19,7 +19,7 @@ class Folder {
 
     static async getAllFolders(userID){
         try{
-            const [rows] = await db.query("SELECT foldername FROM folder Join users ON folder.userid = users.id WHERE users.id = ?",[userID]);
+            const [rows] = await db.query("SELECT * FROM folder Join users ON folder.userid = users.id WHERE users.id = ?",[userID]);
             return rows;
         }
         catch(err){

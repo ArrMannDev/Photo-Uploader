@@ -1,9 +1,9 @@
 const db = require('../config/database');
 
 class Image{
-    static async createImage(imagePath,folderID){
+    static async createImage(imageName,imagePath,folderID){
         try{
-            const [result] = await db.query("INSERT INTO image (imageURL,folderid) VALUES (?,?)",[imagePath,folderID]);
+            const [result] = await db.query("INSERT INTO image (imageURL,folderid,image_name) VALUES (?,?,?)",[imagePath,folderID,imageName]);
             if(result.affectedRows === 1){
                 return {success:true,imageID:result.insertId};
             }
@@ -19,7 +19,11 @@ class Image{
 
     static async findImages(folderID){
         try{
-            const [rows] = await db.query("SELECT * FROM image JOIN folder ON image.folderid = folder.id WHERE image.folderid = ?",[folderID]);
+            if (folderID == null) {
+                const [rows] = await db.query("SELECT * FROM image WHERE folderid IS NULL");
+                return rows;
+            }
+            const [rows] = await db.query("SELECT * FROM image JOIN folder ON image.folderid = folder.folderid WHERE image.folderid = ?",[folderID]);
             return rows;
         }
         catch(error){

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const Image = require('../models/imageModel');
+const Folder = require('../models/folderModel');
 
 const uploadDir = path.join(__dirname, '..', 'public', 'uploads');
 
@@ -24,7 +25,8 @@ const uploadImage = multer({
 
 
 exports.createImage = async (req, res) => {
-    res.render("./forms/imageForm", { title: "Create Image",user:req.user, message: "",folder:"" });
+    const folders = await Folder.getAllFolders(req.user.id);
+    res.render("./forms/imageForm", { title: "Create Image",user:req.user, message: "",folder:null });
 }
 
 exports.uploadImage = async (req, res) => {
@@ -35,9 +37,11 @@ exports.uploadImage = async (req, res) => {
                 return res.status(500).send(err);
             }
             else{
+                const imageName = req.body.imageName ? req.body.imageName : "Test";
+                console.log(imageName);
                 const imagePath = req.file.filename;
-                const folderID = req.body.folderID;
-                const result = await Image.createImage(imagePath,folderID);
+                const folderID = req.body.folderID ? req.body.folderID : null;
+                const result = await Image.createImage(imageName,imagePath,folderID);
                 if(result.success){
                     res.redirect('/dashboard');
                 }

@@ -26,7 +26,7 @@ const upload = multer({
 exports.loginUser = async (req, res) => {
   try {
     const user = await User.findUser(req.body.email, req.body.password);
-    console.log(user);
+    // console.log(user);
 
     if (user?.id) {
       const token = await jwt.generateToken(user);

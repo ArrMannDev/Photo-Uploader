@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 const Folder = require('./models/folderModel');
+const Image = require('./models/imageModel');
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -44,7 +45,9 @@ app.get('/', async (req, res) => {
 
 app.get('/dashboard', auth, async(req, res) => {
     const folders = await Folder.getAllFolders(req.user.id);
-    res.render('index', { user: req.user, folders });
+    const folderID= null;
+    const images = await Image.findImages(folderID);
+    res.render('index', { user: req.user, folders,images,folderID});
   });
 
   app.get('/authremove', (req, res) => {

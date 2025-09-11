@@ -14,7 +14,12 @@
 
         <div class="flex flex-col gap-2 items-start justify-center">
             <label for="folderID" class="block text-sm">Folder ID</label>
-            <input type="text" id="folderID" name="folderID" placeholder="folderID" value="<%= folder ? folder.id : 1 %>" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+            <input type="text" id="folderID" name="folderID" placeholder="folderID" value="<%= folder ? folder.id : "" %>" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+        </div>
+
+        <div class="flex flex-col gap-2 items-start justify-center">
+            <label for="imageName" class="block text-sm">Image Name</label>
+            <input type="text" id="imageName" name="imageName" placeholder="imageName" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
         </div>
 
         <div class="flex flex-col gap-2 items-start justify-center">

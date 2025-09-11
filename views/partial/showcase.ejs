@@ -3,11 +3,18 @@
 
   <div class="w-full flex flex-row flex-wrap justify-start items-center gap-15 py-5 px-10">
     <% folders.forEach((folder) => { %>
-    <div class="flex flex-col justify-center items-center">
+    <a href="/folder/<%= folder.folderid %>" class="flex flex-col justify-center items-center">
       <img src="../img/Folder-border.svg" alt="folder-img" />
       <span class="text-sm"><%= folder.foldername %></span>
-    </div>
+    </a>
+    <% }) %>
 
+    <% images.forEach(image => { %>
+      <div class="flex flex-col justify-center items-center gap-2">
+        <img src="../uploads/<%= image.imageURL %>" alt="image" class="w-[100px] h-[105px]">
+        <span class="text-sm"><%= image.image_name %></span>
+      </div>
     <% }) %>
   </div>
+
 </div>
