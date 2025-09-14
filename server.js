@@ -45,9 +45,9 @@ app.get('/', async (req, res) => {
 
 app.get('/dashboard', auth, async(req, res) => {
     const folders = await Folder.getAllFolders(req.user.id);
-    const folderID= null;
-    const images = await Image.findImages(folderID);
-    res.render('index', { user: req.user, folders,images,folderID});
+    const folderId= null;
+    const images = await Image.findImages(folderId);
+    res.render('index', { user: req.user, folders,images,folderId});
   });
 
   app.get('/authremove', (req, res) => {

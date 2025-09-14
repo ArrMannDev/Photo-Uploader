@@ -5,7 +5,7 @@ const Image = require('../models/imageModel');
 
 
 exports.create = async (req, res) => {
-    res.render("./forms/folderForm", { title: "Create Folder",user:req.user });
+    res.render("./forms/folderForm", { title: "Create Folder",user:req.user});
 }
 
 exports.createFolder = async (req,res)=>{
@@ -22,9 +22,15 @@ exports.createFolder = async (req,res)=>{
 }
 
 exports.detail = async (req,res)=>{
-    const folderID = req.params.id;
-    console.log(folderID);
-    const images = await Image.findImages(folderID);
+    const folderId = req.params.id;
+    console.log(folderId);
+    const images = await Image.findImages(folderId);
     console.log(images);
-    res.render("detail",{user:req.user,folderID});
+    res.render("detail",{user:req.user,folderId});
+}
+
+
+exports.authremove = (req,res) =>{
+    res.clearCookie('authToken');
+    res.redirect('/dashboard');
 }

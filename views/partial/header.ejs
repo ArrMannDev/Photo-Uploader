@@ -1,18 +1,18 @@
-<header class="flex flex-row justify-between items-center px-3 border-b-2 border-[#FFFFF3] shadow-xl">
+<header class="flex flex-row justify-between items-center px-3 border-b-2 border-[#FFFFF3] shadow-sm">
     <img src="/img/logo.svg" alt="logo" class="rounded-2xl">
     <div class="flex flex-row items-center gap-4">
 
-        <a href="/folder/create/<%= folderID %>" class="flex flex-row items-center border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl gap-2">
+        <a href="/folder/create/<%= folderId ? folderId : "" %>" class="flex flex-row items-center border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl gap-2">
             <h1 class="hidden md:block xl:block">Create Folder</h1>
             <img src="/img/folder.svg" alt="folder">
         </a>
         
-        <a href="/image/createImage" class="flex flex-row items-center border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl gap-2">
+        <a href="/image/createImage/<%= folderId ? folderId : "" %>" class="flex flex-row items-center border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl gap-2">
             <h1 class="hidden md:block xl:block">Upload Picture</h1>
             <img src="/img/folder.svg" alt="folder">
         </a>
 
-        <a href="authremove" class="flex flex-row items-center border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl gap-2">
+        <a href="/authremove" class="flex flex-row items-center border-2 border-[#F898D8] rounded-2xl px-3 py-2 shadow-xl gap-2">
             <div class="rounded-full w-[25px] h-[25px] hidden md:block xl:block overflow-hidden">
                 <img src="/uploads/<%= user ? user.image : "" %>"  alt="err" class="rounded-full hidden md:block xl:block">
             </div>

@@ -27,6 +27,17 @@ class Folder {
             throw err;
         }
     }
+
+    static async getFolder(folderID){
+        try{
+            const [rows] = await db.query("SELECT foldername FROM folder where folderid = ?",[folderID]);
+            return rows[0].foldername;
+        }
+        catch(err){
+            console.log(`Error in getAllFolder: ${err}`);
+            throw err;
+        }
+    }
 }
 
 module.exports = Folder;

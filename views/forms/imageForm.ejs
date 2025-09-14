@@ -12,9 +12,9 @@
     <form action="/image/createImage" method="post" class="w-[400px] h-[400px] flex flex-col items-center gap-4 border-1 border-[#F898D8] rounded-2xl px-3 shadow-xl" enctype="multipart/form-data">
         <h1 class="text-4xl text-[#da0e93] my-3"><%= title %></h1>
 
-        <div class="flex flex-col gap-2 items-start justify-center">
+        <div class="flex-col gap-2 items-start justify-center">
             <label for="folderID" class="block text-sm">Folder ID</label>
-            <input type="text" id="folderID" name="folderID" placeholder="folderID" value="<%= folder ? folder.id : "" %>" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
+            <input type="text" id="folderID" name="folderID" placeholder="folderID" value="<%= folderId ? folderId : "" %>" class="w-[300px] border-1 border-[#F898D8] px-3 py-2 outline-none rounded-2xl">
         </div>
 
         <div class="flex flex-col gap-2 items-start justify-center">
