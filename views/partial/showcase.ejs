@@ -1,20 +1,40 @@
-<div class="w-full flex flex-col justify-center gap-10 p-7">
+<div class="w-full flex flex-col gap-10 p-7 overflow-auto">
   <h1 class="text-3xl text-[#da0e93] text-center">Files and Pics</h1>
 
-  <div class="w-full flex flex-row flex-wrap justify-start items-center gap-15 py-5 px-10">
+  <div class="w-full flex flex-row flex-wrap justify-start items-center gap-6 py-5 px-10">
     <% folders.forEach((folder) => { %>
-    <a href="/folder/<%= folder.folderid %>" class="flex flex-col justify-center items-center">
-      <img src="../img/Folder-border.svg" alt="folder-img" />
-      <span class="text-sm"><%= folder.foldername %></span>
-    </a>
+      <div class="flex flex-col justify-center items-center gap-2">
+        <a href="/folder/<%= folder.folderid %>" class="flex flex-col items-center">
+          <img src="../img/Folder-border.svg" alt="folder-img" />
+        </a>
+
+        <div class="flex flex-row items-center gap-2 mt-1">
+          <p class="text-sm"><%= folder.foldername %></p>
+          <form action="/folder/delete" method="post" class="inline">
+            <input type="hidden" name="folderid" value="<%= folder.folderid %>" />
+            <button type="submit" class="flex items-center">
+              <img src="../img/Remove_fill.svg" alt="delete-folder" class="w-4 h-4" />
+            </button>
+          </form>
+        </div>
+      </div>
     <% }) %>
 
     <% images.forEach(image => { %>
       <div class="flex flex-col justify-center items-center gap-2">
-        <img src="../uploads/<%= image.imageURL %>" alt="image" class="w-[100px] h-[105px]">
-        <span class="text-sm"><%= image.image_name %></span>
+        <img src="../uploads/<%= image.imageURL %>" 
+             alt="image"
+             class="w-[100px] h-[115px] object-cover rounded" />
+        <div class="flex flex-row items-center gap-2 mt-1">
+          <span class="text-sm"><%= image.image_name %></span>
+          <form action="/image/delete" method="post" class="inline">
+            <input type="hidden" name="imageid" value="<%= image.imageid %>" />
+            <button type="submit" class="flex items-center">
+              <img src="../img/Remove_fill.svg" alt="delete-image" class="w-4 h-4" />
+            </button>
+          </form>
+        </div>
       </div>
     <% }) %>
   </div>
-
 </div>

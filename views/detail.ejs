@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/src/output.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
     <title>Details Page</title>
-</head>
-<body class="flex flex-col min-h-screen">
-    <%- include('./partial/header') %>   
-</body>
-  
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <%- include('partial/header') %>
+
+    <div
+      class="w-full flex flex-row flex-wrap justify-start items-center gap-15 py-5 px-10"
+    >
+      <div class="flex flex-row justify-center items-center gap-5">
+        <% images.forEach(image => { %>
+        <div class="flex flex-col justify-center items-center gap-2">
+          <img
+            src="/folders/<%= folderName %>/<%= image.imageURL %>"
+            alt="image"
+            class="w-[100px] h-[115px]"
+          />
+          <div class="flex flex-row items-center gap-2">
+            <span class="text-sm"><%= image.image_name %></span>
+            <form action="/image/delete" method="post" class="inline">
+              <input
+                type="hidden"
+                name="imageid"
+                value="<%= image.imageid %>"
+              />
+              <button type="submit" class="flex items-center">
+                <img src="../img/Remove_fill.svg" alt="delete-image" />
+              </button>
+            </form>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
 </html>

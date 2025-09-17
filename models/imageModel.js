@@ -32,6 +32,37 @@ class Image{
         }
     }
 
+    static async deleteImage(imageID){
+        try{
+            const [result] = await db.query("DELETE FROM image WHERE imageid = ?",[imageID]);
+            if(result.affectedRows === 1){
+                return {success:true};
+            }
+            else{
+                return {success:false,message:"Failed to delete image from database"};
+            }
+        }
+        catch(error){
+            console.log(`Error in deleteImage: ${error}`);
+            throw error;
+        }
+    }
+
+    static async deleteChildImages(folderID){
+        try{
+            const [result] = await db.query("DELETE FROM image WHERE folderid = ?",[folderID]);
+            if(result.affectedRows === 1){
+                return {success:true};
+            }
+            else{
+                return {success:false,message:"Failed to delete image from database"};
+            }
+        }
+        catch(error){
+            console.log(`Error in deleteImage: ${error}`);
+            throw error;
+        }
+    }
 }
 
 module.exports = Image;

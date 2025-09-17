@@ -9,4 +9,6 @@ router.post('/create',auth,folderController.createFolder);
 router.get('/:id',auth,folderController.detail);
 router.get('/authremove',folderController.authremove);
 
+router.post('/delete',auth,folderController.deleteFolder);
+
 module.exports = router;

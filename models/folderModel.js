@@ -38,6 +38,19 @@ class Folder {
             throw err;
         }
     }
+
+    static async deleteFolder(folderID) {
+        try {
+            const [result] = await db.query("DELETE FROM folder WHERE folderid = ?", [folderID]);
+            if (result.affectedRows === 1) {
+                return { success: true };
+            } else {
+                return { success: false, message: "Failed to delete folder from database" };
+            }
+        } catch (err) {
+            throw err;
+        }
+    }
 }
 
 module.exports = Folder;

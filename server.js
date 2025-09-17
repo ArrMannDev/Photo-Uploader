@@ -15,6 +15,8 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use('/src', express.static(path.join(__dirname, 'src')));
+app.use('/folders', express.static(path.join(__dirname, 'folders')));
+
 
 
 app.set('view engine', 'ejs');

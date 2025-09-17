@@ -4,5 +4,6 @@ const imageController = require('../controllers/imageController');
 
 router.get('/createImage{/:id}',auth,imageController.createImage);
 router.post('/createImage',auth,imageController.uploadImage);
+router.post("/delete", auth, imageController.deleteImage);
 
 module.exports = router;

@@ -76,4 +76,10 @@ exports.uploadImage = async (req, res) => {
       res.status(500).send(err);
     }
   };
+
+exports.deleteImage = async (req, res) => {
+    const imageId = req.body.imageid;
+    await Image.deleteImage(imageId);
+    res.redirect('/dashboard');
+  };
   
