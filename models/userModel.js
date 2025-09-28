@@ -56,6 +56,32 @@ class User {
       throw err;
     }
   }
+
+  static async findUserById(id) {
+    try {
+      const [rows] = await db.query("SELECT * FROM users WHERE id = ?", [id]);
+      return rows[0];
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async editUser(id,username,email,password,image){
+
+    if(image){
+      const [result] = await db.query("UPDATE users SET name = ?, email = ?, password = ?, image = ? WHERE id = ?",[username,email,password,image,id]);
+      return result.affectedRows;
+    }
+    
+    if(!password){
+      const [result] = await db.query("UPDATE users SET name = ?, email = ? WHERE id = ?",[username,email,id]);
+      return result.affectedRows;
+    }
+
+    const [result] = await db.query("UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?",[username,email,password,id]);
+    return result.affectedRows;
+
+  }
 }
 
 module.exports = User;

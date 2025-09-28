@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const path = require('path');
-const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
@@ -49,6 +48,7 @@ app.get('/dashboard', auth, async(req, res) => {
     const folders = await Folder.getAllFolders(req.user.id);
     const folderId= null;
     const images = await Image.findImages(folderId);
+    console.log(req.user);
     res.render('index', { user: req.user, folders,images,folderId});
   });
 

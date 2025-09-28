@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/output.css" rel="stylesheet">
+  <title><%= title %></title>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-white to-purple-100">
+
+  <form action="/auth/edit" method="post" enctype="multipart/form-data"
+    class="w-[400px] flex flex-col gap-5 border border-[#F898D8] bg-white rounded-2xl px-6 py-8 shadow-2xl">
+
+    <!-- Title -->
+    <h1 class="text-3xl font-bold text-[#da0e93] text-center mb-2"><%= title %></h1>
+    <p class="text-gray-500 text-sm text-center mb-4">Fill in your details below</p>
+
+    <!--ID-->
+    <div class="flex flex-col gap-2">
+      <label for="id" class="text-sm font-medium text-gray-600">ID</label>
+      <input type="text" id="id" name="id" 
+        class="w-full border border-[#F898D8] px-4 py-2 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none"
+        value="<%= user ? user.id : '' %>">
+    </div>  
+
+    <!-- Username -->
+    <div class="flex flex-col gap-2">
+      <label for="username" class="text-sm font-medium text-gray-600">User Name</label>
+      <input type="text" id="username" name="username" placeholder="Enter your name"
+        class="w-full border border-[#F898D8] px-4 py-2 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none"
+        value="<%= user ? user.name : '' %>">
+    </div>
+
+    <!-- Email -->
+    <div class="flex flex-col gap-2">
+      <label for="email" class="text-sm font-medium text-gray-600">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email"
+        class="w-full border border-[#F898D8] px-4 py-2 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none"
+        value="<%= user ? user.email : '' %>">
+    </div>
+
+    <!-- Password -->
+    <div class="flex flex-col gap-2">
+      <label for="password" class="text-sm font-medium text-gray-600">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter New password (if you want to change)"
+        class="w-full border border-[#F898D8] px-4 py-2 rounded-xl focus:ring-2 focus:ring-pink-300 focus:outline-none">
+    </div>
+
+    <!-- Previous Image -->
+    <% if (user && user.image) { %>
+      <div class="flex flex-col items-center gap-2">
+        <span class="text-sm text-gray-600">Previous Image</span>
+        <img src="/uploads/<%= user.image %>" alt="Previous Image"
+          class="w-[100px] h-[100px] object-cover rounded-full border border-pink-300 shadow-md">
+      </div>
+    <% } %>
+
+    <!-- Upload New Image -->
+    <div class="flex flex-col gap-2">
+      <label for="photo" class="text-sm font-medium text-gray-600">Upload New Image</label>
+      <input type="file" id="photo" name="photo"
+        class="w-full border border-[#F898D8] px-4 py-2 rounded-xl bg-pink-50 focus:ring-2 focus:ring-pink-300 focus:outline-none">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit"
+      class="w-full py-2 mt-4 bg-[#da0e93] text-white rounded-xl font-medium shadow-lg hover:bg-pink-700 transition">
+      Save Changes
+    </button>
+
+  </form>
+
+</body>
+</html>

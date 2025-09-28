@@ -32,7 +32,13 @@ exports.detail = async (req,res)=>{
 
 exports.deleteFolder = async (req,res)=>{
     const folderId = req.body.folderid;
+    const folderName = await Folder.getFolder(folderId);
     await Image.deleteChildImages(folderId);
+    //delete real folder
+    const folderPath = path.join(__dirname, '..', 'public', 'folders', folderName);
+    if (fs.existsSync(folderPath)) {
+        fs.rmdirSync(folderPath, { recursive: true });
+    }
     await Folder.deleteFolder(folderId);
     res.redirect('/dashboard');
 }

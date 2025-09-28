@@ -1,16 +1,40 @@
-<div class="w-[350px] h-screen flex flex-col items-center justify-start border-x-2 border-b-2 border-[#f0ecec] shadow-sm shadow-black rounded-xl px-6 py-10">
-  <ul class="space-y-8 w-full">
+<div class="w-[340px] h-screen flex flex-col items-center justify-start border-r-2 border-[#ded7d7] px-6 py-10">
+  <ul class="space-y-10 w-full">
     <li>
-      <a href="/dashboard" class="block px-3 py-2 rounded hover:bg-amber-400">Home</a>
+      <a href="/folder/create/<%= folderId ? folderId : "" %>" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 <%= folderId ? "hidden" : "flex" %> ">
+        <img src="/img/folder-add.svg" alt="folder">
+        <h1 class="hidden md:block xl:block">Create Folder</h1>
+    </a>
     </li>
     <li>
-      <a href="#" class="block px-3 py-2 rounded hover:bg-amber-400">Edit Profile</a>
+      <a href="/image/createImage/<%= folderId ? folderId : "" %>" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+        <img src="/img/folder.svg" alt="folder">
+        <h1 class="hidden md:block xl:block">Upload Picture</h1>
+    </a>
     </li>
     <li>
-      <a href="#" class="block px-3 py-2 rounded hover:bg-amber-400">Delete User Account</a>
+      <a href="/dashboard" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+        <img src="/img/Home_duotone.svg" alt="folder">
+        <h1 class="hidden md:block xl:block">Home</h1>
+      </a>
     </li>
     <li>
-      <a href="#" class="block px-3 py-2 rounded hover:bg-amber-400">Logout Account</a>
+      <a href="/auth/edit/ <%= user.id %> " class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+        <img src="/img/edit.svg" alt="folder">
+        <h1 class="hidden md:block xl:block">Edit Profile</h1>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+        <img src="/img/del_alt_duotone.svg" alt="folder">
+        <h1 class="hidden md:block xl:block">Delete Account</h1>
+      </a>
+    </li>
+    <li>
+      <a href="/authremove" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+        <img src="/img/log-out.svg" alt="folder">
+        <h1 class="hidden md:block xl:block">Log Out</h1>
+      </a>
     </li>
   </ul>
 </div>
