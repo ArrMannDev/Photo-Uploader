@@ -1,5 +1,5 @@
-<div class="w-[340px] h-screen flex flex-col items-center justify-start border-r-2 border-[#ded7d7] px-6 py-10">
-  <ul class="space-y-10 w-full">
+<div class="relative w-[340px] h-screen flex flex-col items-center justify-start border-r-2 border-[#ded7d7] px-6 py-10">
+  <ul class="space-y-5 w-full">
     <li>
       <a href="/folder/create/<%= folderId ? folderId : "" %>" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 <%= folderId ? "hidden" : "flex" %> ">
         <img src="/img/folder-add.svg" alt="folder">
@@ -31,10 +31,15 @@
       </a>
     </li>
     <li>
-      <a href="/authremove" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+      <a href="/authremove" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3" onclick= "(confirm('Are you sure you want to log out?'))">
         <img src="/img/log-out.svg" alt="folder">
         <h1 class="hidden md:block xl:block">Log Out</h1>
       </a>
     </li>
   </ul>
+
+  <button class="w-[30px] h-[30px] absolute top-0 left-70.5 z-10 border-2 border-[#F898D8] rounded-sm hover:cursor-pointer" onclick= "(confirm('Are you sure you want to log out?'))">
+    <img src="/img/Expand_right.svg" alt="opened" class="w-full h-full">
+  </button>
 </div>
+
