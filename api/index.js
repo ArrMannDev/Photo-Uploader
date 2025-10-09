@@ -5,8 +5,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "localhost";
-const Folder = require("./models/folderModel");
-const Image = require("./models/imageModel");
+const Folder = require("../models/folderModel");
+const Image = require("../models/imageModel");
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -19,12 +19,12 @@ app.use("/folders", express.static(path.join(__dirname, "folders")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-const loginRoute = require("./routes/authRoute");
-const folderRoute = require("./routes/folderRoute");
-const imageRoute = require("./routes/imageRoute");
+const loginRoute = require("../routes/authRoute");
+const folderRoute = require("../routes/folderRoute");
+const imageRoute = require("../routes/imageRoute");
 
-const auth = require("./middleware/auth");
-const jwt = require("./utils/jwt");
+const auth = require("../middleware/auth");
+const jwt = require("../utils/jwt");
 
 app.use("/auth", loginRoute);
 app.use("/folder", folderRoute);
@@ -51,10 +51,6 @@ app.get("/dashboard", auth, async (req, res) => {
 app.get("/authremove", (req, res) => {
   res.clearCookie("authToken");
   res.redirect("/");
-});
-
-app.listen(PORT, () => {
-  console.log(`Local server running on port ${PORT}`);
 });
 
 module.exports = app;
