@@ -9,5 +9,6 @@ router.post('/signUp', authController.signUpUser);
 
 router.get('/edit{/:id}',authController.edit);
 router.post("/edit",authController.editUser);
+router.post("/delete/:id",auth,authController.deleteUser)
 
 module.exports = router;

@@ -1,45 +1,48 @@
-<div class="relative w-[340px] h-screen flex flex-col items-center justify-start border-r-2 border-[#ded7d7] px-6 py-10">
-  <ul class="space-y-5 w-full">
-    <li>
-      <a href="/folder/create/<%= folderId ? folderId : "" %>" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 <%= folderId ? "hidden" : "flex" %> ">
+<div id="sidebar" class="relative transition-all duration-200 ease-in-out w-[100px] md:w-[200px] xl:w-[340px] h-screen flex flex-col left-[-20px] items-center justify-start border-r-2 border-[#ded7d7] px-5 xl:px-6 py-7">
+  <ul class="navList space-y-6 w-full">
+    <li class="<%= folderId ? "hidden" : "block" %>">
+      <a href="/folder/create/<%= folderId ? folderId : "" %>" class="flex flex-row h-[48px] min-h-[48px] items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 overflow-hidden">
         <img src="/img/folder-add.svg" alt="folder">
-        <h1 class="hidden md:block xl:block">Create Folder</h1>
+        <h1 class="transition-opacity duration-100 ease-in-out opacity-100 hidden md:block xl:block">Create Folder</h1>
     </a>
     </li>
     <li>
-      <a href="/image/createImage/<%= folderId ? folderId : "" %>" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+      <a href="/image/createImage/<%= folderId ? folderId : "" %>" class="flex flex-row h-[48px] min-h-[48px] items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 overflow-hidden">
         <img src="/img/folder.svg" alt="folder">
-        <h1 class="hidden md:block xl:block">Upload Picture</h1>
+        <h1 class="transition-opacity duration-100 ease-in-out opacity-100 hidden md:block xl:block">Upload Picture</h1>
     </a>
     </li>
     <li>
-      <a href="/dashboard" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+      <a href="/dashboard" class="flex flex-row h-[48px] min-h-[48px] items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 overflow-hidden">
         <img src="/img/Home_duotone.svg" alt="folder">
-        <h1 class="hidden md:block xl:block">Home</h1>
+        <h1 class="transition-opacity duration-100 ease-in-out opacity-100 hidden md:block xl:block">Home</h1>
       </a>
     </li>
     <li>
-      <a href="/auth/edit/ <%= user.id %> " class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
+      <a href="/auth/edit/ <%= user.id %> " class="flex flex-row h-[48px] min-h-[48px] items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 overflow-hidden">
         <img src="/img/edit.svg" alt="folder">
-        <h1 class="hidden md:block xl:block">Edit Profile</h1>
+        <h1 class="transition-opacity duration-100 ease-in-out opacity-100 hidden md:block xl:block">Edit Profile</h1>
       </a>
     </li>
     <li>
-      <a href="#" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3">
-        <img src="/img/del_alt_duotone.svg" alt="folder">
-        <h1 class="hidden md:block xl:block">Delete Account</h1>
-      </a>
+      <form action="/auth/delete/<%= user.id %>" class="flex flex-row h-[48px] min-h-[48px] items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3 overflow-hidden" method="post" onclick="(confirm())">
+        <button type="submit" class="flex flex-row items-center gap-3">
+          <img src="/img/del_alt_duotone.svg" alt="folder">
+          <h1 class="transition-opacity duration-100 ease-in-out opacity-100 hidden md:block xl:block">Delete Account</h1>
+        </button>
+      </form>
     </li>
     <li>
-      <a href="/authremove" class="flex flex-row items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3" onclick= "(confirm('Are you sure you want to log out?'))">
+      <a href="/authremove" class="flex flex-row h-[48px] min-h-[48px] items-center border-2 border-[#ffffff] hover:bg-[#F898D8] rounded-2xl px-3 py-3 gap-3" onclick= "(confirm('Are you sure you want to log out?'))">
         <img src="/img/log-out.svg" alt="folder">
-        <h1 class="hidden md:block xl:block">Log Out</h1>
+        <h1 class="transition-opacity duration-100 ease-in-out opacity-100 hidden md:block xl:block">Log Out</h1>
       </a>
     </li>
   </ul>
 
-  <button class="w-[30px] h-[30px] absolute top-0 left-70.5 z-10 border-2 border-[#F898D8] rounded-sm hover:cursor-pointer" onclick= "(confirm('Are you sure you want to log out?'))">
-    <img src="/img/Expand_right.svg" alt="opened" class="w-full h-full">
+  <button class="sm:block w-[30px] h-[30px] absolute top-0 left-23 xl:left-70.5 z-10 border-y-2 border-r-2 border-[#ded7d7] rounded-sm hover:cursor-pointer transition-all duration-300 ease-in-out"
+  id="navBtn">
+    <img src="/img/Expand_left.svg" alt="opened" class="w-full h-full">
   </button>
 </div>
 

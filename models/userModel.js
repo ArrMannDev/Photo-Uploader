@@ -80,7 +80,11 @@ class User {
 
     const [result] = await db.query("UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?",[username,email,password,id]);
     return result.affectedRows;
+  }
 
+  static async deleteUser(id){
+    const [result] = await db.query("DELETE FROM users WHERE id = ?",[id]);
+    return result.affectedRows;
   }
 }
 

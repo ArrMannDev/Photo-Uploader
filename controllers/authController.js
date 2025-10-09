@@ -134,3 +134,17 @@ exports.editUser = async (req, res) => {
     res.status(500).send(err);
   }
 };
+
+exports.deleteUser = async (req, res) => {
+   const id = req.params.id;
+   try{
+    const result = await User.deleteUser(id);
+    if(result === 1){
+      res.clearCookie("authToken");
+      res.redirect("/");
+    }
+   }
+   catch(error){
+    res.status(500).send("Internal Server Error in Delete User Account")
+   }
+}

@@ -15,5 +15,35 @@
     </div>
     
 </body>
+<script>
+    let clicked = false;
   
+    const navBtn = document.getElementById('navBtn');
+    const navBtnImg = document.querySelector('#navBtn img');
+    const sidebar = document.getElementById('sidebar');
+    const h1Tags = sidebar.querySelectorAll('li h1');
+  
+    navBtn.addEventListener("click", () => {
+      if (clicked === true) {
+        sidebar.style.width = "100px";
+        h1Tags.forEach(h1 => {
+          h1.classList.add("opacity-0");
+          h1.classList.remove("opacity-100");
+        });
+        navBtn.style.left = "96px";
+        navBtnImg.src = "/img/Expand_Right.svg";
+        clicked = false;
+      } else {
+        sidebar.style.width = "340px";
+        h1Tags.forEach(h1 => {
+          h1.classList.remove("opacity-0");
+          h1.classList.add("opacity-100");
+        });
+        navBtn.style.left = "282px";
+        navBtnImg.src = "/img/Expand_left.svg";
+        clicked = true;
+      }
+    });
+  </script>
+
 </html>

@@ -6,36 +6,67 @@
     <link href="/src/output.css" rel="stylesheet" />
     <title>Details Page</title>
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col h-screen overflow-hidden">
     <%- include('partial/header') %>
 
-    <div
-      class="w-full flex flex-row flex-wrap justify-start items-center gap-15 py-5 px-10"
-    >
-      <div class="flex flex-row justify-center items-center gap-5">
-        <% images.forEach(image => { %>
-        <div class="flex flex-col justify-center items-center gap-2">
-          <img
-            src="/folders/<%= folderName %>/<%= image.imageURL %>"
-            alt="image"
-            class="w-[100px] h-[115px]"
-          />
-          <div class="flex flex-row items-center gap-2">
-            <span class="text-sm"><%= image.image_name %></span>
-            <form action="/image/delete" method="post" class="inline">
-              <input
-                type="hidden"
-                name="imageid"
-                value="<%= image.imageid %>"
-              />
-              <button type="submit" class="flex items-center">
-                <img src="../img/Remove_fill.svg" alt="delete-image" />
-              </button>
-            </form>
+    <div class="w-full flex flex-row">
+      <%- include('partial/sidebar') %>
+      <div class="w-full flex flex-row flex-wrap gap-15 py-5 px-10">
+        <div class="flex flex-col justify-start items-center gap-2">
+          <% images.forEach(image => { %>
+          <div class="flex flex-col justify-center items-center gap-2">
+            <img
+              src="/folders/<%= folderName %>/<%= image.imageURL %>"
+              alt="image"
+              class="w-[100px] h-[115px]"
+            />
+            <div class="flex flex-row items-center gap-2">
+              <span class="text-sm"><%= image.image_name %></span>
+              <form action="/image/delete" method="post" class="inline">
+                <input
+                  type="hidden"
+                  name="imageid"
+                  value="<%= image.imageid %>"
+                />
+                <button type="submit" class="flex items-center">
+                  <img src="../img/Remove_fill.svg" alt="delete-image" />
+                </button>
+              </form>
+            </div>
           </div>
+          <% }) %>
         </div>
-        <% }) %>
       </div>
     </div>
   </body>
+  <script>
+    let clicked = false;
+
+    const navBtn = document.getElementById("navBtn");
+    const navBtnImg = document.querySelector("#navBtn img");
+    const sidebar = document.getElementById("sidebar");
+    const h1Tags = sidebar.querySelectorAll("li h1");
+
+    navBtn.addEventListener("click", () => {
+      if (clicked === true) {
+        sidebar.style.width = "100px";
+        h1Tags.forEach((h1) => {
+          h1.classList.add("opacity-0");
+          h1.classList.remove("opacity-100");
+        });
+        navBtn.style.left = "96px";
+        navBtnImg.src = "/img/Expand_Right.svg";
+        clicked = false;
+      } else {
+        sidebar.style.width = "340px";
+        h1Tags.forEach((h1) => {
+          h1.classList.remove("opacity-0");
+          h1.classList.add("opacity-100");
+        });
+        navBtn.style.left = "282px";
+        navBtnImg.src = "/img/Expand_left.svg";
+        clicked = true;
+      }
+    });
+  </script>
 </html>
