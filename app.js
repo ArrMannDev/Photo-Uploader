@@ -58,6 +58,6 @@ app.get('/dashboard', auth, async(req, res) => {
   });
   
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://${HOST}:${PORT}`);
-});
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
