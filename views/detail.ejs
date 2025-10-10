@@ -6,22 +6,30 @@
     <link href="/src/output.css" rel="stylesheet" />
     <title>Details Page</title>
   </head>
-  <body class="flex flex-col h-screen overflow-hidden">
+
+  <body class="flex flex-col min-h-screen bg-gray-50 overflow-x-hidden">
+    <!-- Header -->
     <%- include('partial/header') %>
 
-    <div class="w-full flex flex-row">
+    <!-- Main Content -->
+    <div class="flex flex-row flex-grow h-screen">
+      <!-- Sidebar -->
       <%- include('partial/sidebar') %>
-      <div class="w-full flex flex-col flex-wrap gap-15 py-5 px-10">
-        <div class="flex flex-row justify-start items-center gap-10">
+
+      <!-- Image Grid -->
+      <div class="w-full h-full flex flex-col gap-10 py-5 px-10">
+        <div class="flex flex-row flex-wrap justify-start items-center gap-10">
           <% images.forEach(image => { %>
-          <div class="flex flex-col justify-center items-center gap-2">
+          <div
+            class="flex flex-col justify-center items-center gap-2 bg-white shadow-md p-3 rounded-lg"
+          >
             <img
               src="/folders/<%= folderName %>/<%= image.imageURL %>"
               alt="image"
-              class="w-[100px] h-[115px]"
+              class="w-[100px] h-[115px] object-cover rounded"
             />
             <div class="flex flex-row items-center gap-2">
-              <span class="text-sm"><%= image.image_name %></span>
+              <span class="text-sm font-medium"><%= image.image_name %></span>
               <form action="/image/delete" method="post" class="inline">
                 <input
                   type="hidden"
@@ -29,44 +37,119 @@
                   value="<%= image.imageid %>"
                 />
                 <button type="submit" class="flex items-center">
-                  <img src="../img/Remove_fill.svg" alt="delete-image" />
+                  <img
+                    src="../img/Remove_fill.svg"
+                    alt="delete-image"
+                    class="w-4 h-4"
+                  />
                 </button>
               </form>
             </div>
           </div>
           <% }) %>
         </div>
+        <!-- Pagination -->
+        <div class="text-center my-6">
+          <% if (totalPages > 1) { %>
+
+          <!-- Previous Button -->
+          <% if (currentPage > 1) { %>
+          <a
+            href="/folder/<%= folderId %>?page=<%= currentPage - 1 %>"
+            style="
+              padding: 8px 12px;
+              border: 1px solid #ddd;
+              border-radius: 6px;
+              color: #333;
+              text-decoration: none;
+              margin: 0 4px;
+            "
+          >
+            Previous
+          </a>
+          <% } %>
+
+          <!-- Page Numbers -->
+          <% for (let i = 1; i <= totalPages; i++) { %> <% if (i ===
+          currentPage) { %>
+          <span
+            style="
+              padding: 8px 12px;
+              border-radius: 6px;
+              background: #f898d8;
+              color: white;
+              margin: 0 4px;
+            "
+          >
+            <%= i %>
+          </span>
+          <% } else { %>
+          <a
+            href="/folder/<%= folderId %>?page=<%= i %>"
+            style="
+              padding: 8px 12px;
+              border: 1px solid #ddd;
+              border-radius: 6px;
+              color: #333;
+              text-decoration: none;
+              margin: 0 4px;
+            "
+          >
+            <%= i %>
+          </a>
+          <% } %> <% } %>
+
+          <!-- Next Button -->
+          <% if (currentPage < totalPages) { %>
+          <a
+            href="/folder/<%= folderId %>?page=<%= currentPage + 1 %>"
+            style="
+              padding: 8px 12px;
+              border: 1px solid #ddd;
+              border-radius: 6px;
+              color: #333;
+              text-decoration: none;
+              margin: 0 4px;
+            "
+          >
+            Next
+          </a>
+          <% } %> <% } %>
+        </div>
       </div>
     </div>
-  </body>
-  <script>
-    let clicked = false;
 
-    const navBtn = document.getElementById("navBtn");
-    const navBtnImg = document.querySelector("#navBtn img");
-    const sidebar = document.getElementById("sidebar");
-    const h1Tags = sidebar.querySelectorAll("li h1");
+    <script>
+      const navBtn = document.getElementById("navBtn");
+      const sidebar = document.getElementById("sidebar");
 
-    navBtn.addEventListener("click", () => {
-      if (clicked === true) {
-        sidebar.style.width = "100px";
-        h1Tags.forEach((h1) => {
-          h1.classList.add("opacity-0");
-          h1.classList.remove("opacity-100");
+      if (navBtn && sidebar) {
+        const navBtnImg = navBtn.querySelector("img");
+        const h1Tags = sidebar.querySelectorAll("li h1");
+        let clicked = false;
+
+        navBtn.addEventListener("click", () => {
+          if (clicked) {
+            sidebar.style.width = "100px";
+            h1Tags.forEach((h1) => {
+              h1.classList.add("opacity-0");
+              h1.classList.remove("opacity-100");
+            });
+            navBtn.style.left = "96px";
+            navBtnImg.src = "/img/Expand_Right.svg";
+            clicked = false;
+          } else {
+            sidebar.style.width = "340px";
+            h1Tags.forEach((h1) => {
+              h1.classList.remove("opacity-0");
+              h1.classList.add("opacity-100");
+            });
+            navBtn.style.left = "282px";
+            navBtnImg.src = "/img/Expand_left.svg";
+            clicked = true;
+          }
         });
-        navBtn.style.left = "96px";
-        navBtnImg.src = "/img/Expand_Right.svg";
-        clicked = false;
-      } else {
-        sidebar.style.width = "340px";
-        h1Tags.forEach((h1) => {
-          h1.classList.remove("opacity-0");
-          h1.classList.add("opacity-100");
-        });
-        navBtn.style.left = "282px";
-        navBtnImg.src = "/img/Expand_left.svg";
-        clicked = true;
       }
-    });
-  </script>
+    </script>
+  </body>
 </html>

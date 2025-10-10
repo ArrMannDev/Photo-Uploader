@@ -23,11 +23,17 @@ exports.createFolder = async (req,res)=>{
 exports.detail = async (req,res)=>{
     const folderId = req.params.id;
     // console.log(folderId);
+    const page = parseInt(req.query.page) || 1;
+    const limit= 24;
+    const offset = (page - 1) * limit;
+    const totalCount = await Image.countImages(folderId); 
+    const totalPage = Math.ceil(totalCount/limit);
+
     const folderName = await Folder.getFolder(folderId);
-    console.log(folderName);
-    const images = await Image.findImages(folderId);
-    console.log(images);
-    res.render("detail",{user:req.user,folderId,images,folderName});
+    // console.log(folderName);
+    const images = await Image.findImages(folderId,offset,limit);
+    // console.log(images);
+    res.render("detail",{user:req.user,folderId,images,folderName,currentPage: page, totalPages: totalPage});
 }
 
 exports.deleteFolder = async (req,res)=>{

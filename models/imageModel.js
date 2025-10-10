@@ -17,13 +17,13 @@ class Image{
         }
     }
 
-    static async findImages(folderID){
+    static async findImages(folderID,offset,limit){
         try{
             if (folderID == null) {
                 const [rows] = await db.query("SELECT * FROM image WHERE folderid IS NULL");
                 return rows;
             }
-            const [rows] = await db.query("SELECT * FROM image JOIN folder ON image.folderid = folder.folderid WHERE image.folderid = ?",[folderID]);
+            const [rows] = await db.query("SELECT * FROM image WHERE folderid = ? LIMIT ? OFFSET ?",[folderID,limit,offset]);
             return rows;
         }
         catch(error){
@@ -60,6 +60,17 @@ class Image{
         }
         catch(error){
             console.log(`Error in deleteImage: ${error}`);
+            throw error;
+        }
+    }
+
+    static async countImages(folderID){
+        try{
+            const [result] = await db.query("SELECT COUNT(*) AS count FROM image WHERE folderid = ?",[folderID]);
+            return result[0].count;
+        }
+        catch(error){
+            console.log(`Error in countImages: ${error}`);
             throw error;
         }
     }

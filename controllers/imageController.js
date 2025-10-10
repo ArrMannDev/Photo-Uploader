@@ -56,7 +56,7 @@ exports.uploadImage = async (req, res) => {
   
         // Now req.body is available
         const folderID = req.body.folderID || null;
-        const imageName = req.body.imageName || "Test";
+        const imageName = req.body.imageName || "";
         const imagePath = req.file.filename;
   
         const result = await Image.createImage(imageName, imagePath, folderID);
